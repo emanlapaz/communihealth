@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CommunityHealth</string>
+    <string name="button_addPatient">Add Patient</string>
+    <string name="hint_patientName">Patient Name</string>
 </resources>
