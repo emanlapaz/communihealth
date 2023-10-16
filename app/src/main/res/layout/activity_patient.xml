@@ -41,12 +41,39 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/patientName"
+                    android:id="@+id/patientMRN"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
                     android:autofillHints="hint"
-                    android:hint="@string/hint_patientName"
+                    android:hint="@string/hint_patientMRN"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/patientLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_patientLastName"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/patientFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_patientFirstName"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
