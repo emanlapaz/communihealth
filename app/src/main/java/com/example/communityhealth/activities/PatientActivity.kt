@@ -3,6 +3,7 @@ package com.example.communityhealth.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.communityhealth.databinding.ActivityPatientBinding
+import com.example.communityhealth.main.MainApp
 import com.example.communityhealth.models.PatientModel
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
@@ -13,55 +14,57 @@ class PatientActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPatientBinding
     var patient = PatientModel()
-    val patients = ArrayList<PatientModel>()
+    lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityPatientBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Timber.plant(Timber.DebugTree())
-
+        app = application as MainApp
         i("CommunityHealth Activity started...")
 
         binding.btnAdd.setOnClickListener {
-            val patientMRN = binding.patientMRN.text.toString().trim()
-            val lastName = binding.patientLastName.text.toString().trim()
-            val firstName = binding.patientFirstName.text.toString().trim()
+            patient.MRN = binding.patientMRN.text.toString().trim()
+            patient.lastName = binding.patientLastName.text.toString().trim()
+            patient.firstName = binding.patientFirstName.text.toString().trim()
+
+            patient.lastName = patient.lastName.lowercase()
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } //Ensures First Letter is Capitalized
+
+            patient.firstName = patient.firstName.lowercase()
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } //Ensures First Letter is Capitalized
 
             val regexPattern = Regex("^[0-9]{6}$") // Accept only 6-digit integers
             val nameRegexPattern = Regex("^[a-zA-Z]+\$") // Accept only letters in the name fields
 
-            if (regexPattern.matches(patientMRN) && lastName.isNotEmpty() && firstName.isNotEmpty() && nameRegexPattern.matches(lastName) && nameRegexPattern.matches(firstName)) {
-                i("add Button Pressed: $patientMRN")
-                patient.MRN = patientMRN
-                patient.lastName = lastName
-                patient.firstName = firstName
-                patients.add(patient.copy())
+            if (regexPattern.matches(patient.MRN) && patient.lastName.isNotEmpty() && patient.firstName.isNotEmpty() && nameRegexPattern.matches(patient.lastName) && nameRegexPattern.matches(patient.firstName)) {
+                app.patients.add(patient.copy())
+                i("add Button Pressed: ${patient.MRN}")
 
                 Snackbar
                     .make(it, "Patient added", Snackbar.LENGTH_SHORT)
                     .show()
 
-                for (i in patients.indices) {
-                    i("PatientMRN[$i]: ${patients[i]}")
+                for (i in app!!.patients.indices) {
+                    i("PatientMRN[$i]: ${this.app.patients[i]}")
                 }
             } else {
                 var errorPrompt = "Please correct the following issues:\n"
 
-                if (!regexPattern.matches(patientMRN)) {
+                if (!regexPattern.matches(patient.MRN)) {
                     errorPrompt += " - MRN must be a 6-digit number\n"
                 }
-                if (lastName.isEmpty()) {
+                if (patient.lastName.isEmpty()) {
                     errorPrompt += " - Last name can't be empty\n"
                 }
-                if (firstName.isEmpty()) {
+                if (patient.firstName.isEmpty()) {
                     errorPrompt += " - First name can't be empty\n"
                 }
-                if (!nameRegexPattern.matches(lastName)) {
+                if (!nameRegexPattern.matches(patient.lastName)) {
                     errorPrompt += " - Last name can only contain letters\n"
                 }
-                if (!nameRegexPattern.matches(firstName)) {
+                if (!nameRegexPattern.matches(patient.firstName)) {
                     errorPrompt += " - First name can only contain letters\n"
                 }
 
