@@ -5,4 +5,5 @@
     <string name="hint_patientLastName">Last Name </string>
     <string name="hint_patientFirstName">First Name </string>
     <string name="menu_addPatient">Add Patient</string>
+    <string name="menu_cancelPatient">Cancel</string>
 </resources>
