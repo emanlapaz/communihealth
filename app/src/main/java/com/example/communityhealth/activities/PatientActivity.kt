@@ -2,11 +2,13 @@ package com.example.communityhealth.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import com.example.communityhealth.R
 import com.example.communityhealth.databinding.ActivityPatientBinding
 import com.example.communityhealth.main.MainApp
 import com.example.communityhealth.models.PatientModel
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
 import timber.log.Timber.Forest.i
 import java.util.Locale
 
@@ -20,6 +22,9 @@ class PatientActivity : AppCompatActivity() {
 
         binding = ActivityPatientBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
 
         app = application as MainApp
         i("CommunityHealth Activity started...")
@@ -76,5 +81,18 @@ class PatientActivity : AppCompatActivity() {
                     .show()
             }
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.patient_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
