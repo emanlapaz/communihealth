@@ -10,10 +10,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.communityhealth.R
 import com.example.communityhealth.adapters.PatientAdapter
+import com.example.communityhealth.adapters.PatientListener
 import com.example.communityhealth.databinding.ActivityPatientListBinding
 import com.example.communityhealth.main.MainApp
+import com.example.communityhealth.models.PatientModel
 
-class PatientListActivity : AppCompatActivity() {
+class PatientListActivity : AppCompatActivity(), PatientListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPatientListBinding
@@ -30,8 +32,8 @@ class PatientListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        //binding.recyclerView.adapter = PatientAdapter(app.patients)
-        binding.recyclerView.adapter = PatientAdapter(app.patients.findAll())
+        binding.recyclerView.adapter
+        PatientAdapter(app.patients.findAll(),this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -54,7 +56,22 @@ class PatientListActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0,app.patients.findAll().size)
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.patients.findAll().size)
+            }
+        }
+    override fun onPatientClick(patient: PatientModel) {
+        val launcherIntent = Intent(this, PatientActivity::class.java)
+        getClickResult.launch(launcherIntent)
+    }
+
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.patients.findAll().size)
             }
         }
 }
