@@ -76,4 +76,4 @@ class PatientActivity : AppCompatActivity() {
     }
 }
 
-// work on the adapters
+// work on Patient List
