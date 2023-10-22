@@ -30,7 +30,8 @@ class PatientListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = PatientAdapter(app.patients)
+        //binding.recyclerView.adapter = PatientAdapter(app.patients)
+        binding.recyclerView.adapter = PatientAdapter(app.patients.findAll())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -53,7 +54,7 @@ class PatientListActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0, app.patients.size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0,app.patients.findAll().size)
             }
         }
 }

@@ -44,16 +44,14 @@ class PatientActivity : AppCompatActivity() {
             val nameRegexPattern = Regex("^[a-zA-Z]+\$") // Accept only letters in the name fields
 
             if (regexPattern.matches(patient.MRN) && patient.lastName.isNotEmpty() && patient.firstName.isNotEmpty() && nameRegexPattern.matches(patient.lastName) && nameRegexPattern.matches(patient.firstName)) {
-                app.patients.add(patient.copy())
+                //app.patients.add(patient.copy())
+                app.patients.create(patient.copy())
                 i("add Button Pressed: ${patient.MRN}")
 
                 Snackbar
                     .make(it, "Patient added", Snackbar.LENGTH_SHORT)
                     .show()
 
-                for (i in app!!.patients.indices) {
-                    i("PatientMRN[$i]: ${this.app.patients[i]}")
-                }
                 setResult(RESULT_OK)
                 finish()
 
