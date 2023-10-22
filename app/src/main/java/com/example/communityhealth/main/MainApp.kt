@@ -12,5 +12,9 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("CommuniHealth started")
+        patients.add(PatientModel(MRN = "123123", lastName = "DOe", firstName = "John"))
+        patients.add(PatientModel(MRN = "321321", lastName = "Didi", firstName = "Ed"))
+        patients.add(PatientModel(MRN = "121212", lastName = "DitOe", firstName = "Bill"))
+
     }
 }
