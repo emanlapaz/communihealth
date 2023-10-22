@@ -4,4 +4,5 @@
     <string name="hint_patientMRN">Patient Medical Record Number</string>
     <string name="hint_patientLastName">Last Name </string>
     <string name="hint_patientFirstName">First Name </string>
+    <string name="menu_addPatient">Add Patient</string>
 </resources>

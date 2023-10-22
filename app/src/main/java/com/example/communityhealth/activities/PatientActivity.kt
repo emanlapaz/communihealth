@@ -49,6 +49,9 @@ class PatientActivity : AppCompatActivity() {
                 for (i in app!!.patients.indices) {
                     i("PatientMRN[$i]: ${this.app.patients[i]}")
                 }
+                setResult(RESULT_OK)
+                finish()
+
             } else {
                 var errorPrompt = "Please correct the following issues:\n"
 
@@ -75,5 +78,3 @@ class PatientActivity : AppCompatActivity() {
         }
     }
 }
-
-// work on Patient List
