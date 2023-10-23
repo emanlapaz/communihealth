@@ -26,6 +26,7 @@ class PatientMemStore : PatientStore {
             foundPatient.MRN = patient.MRN
             foundPatient.firstName = patient.firstName
             foundPatient.lastName = patient.lastName
+            foundPatient.image = patient.image
             logAll()
         }
     }

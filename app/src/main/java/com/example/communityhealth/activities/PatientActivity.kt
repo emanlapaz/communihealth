@@ -1,6 +1,7 @@
 package com.example.communityhealth.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -47,6 +48,9 @@ class PatientActivity : AppCompatActivity() {
             Picasso.get()
                 .load(patient.image)
                 .into(binding.patientImage)
+            if (patient.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_patient_image)
+            }
         }
 
         binding.btnAdd.setOnClickListener {
@@ -136,6 +140,7 @@ class PatientActivity : AppCompatActivity() {
                             Picasso.get()
                                 .load(patient.image)
                                 .into(binding.patientImage)
+                            binding.chooseImage.setText(R.string.change_patient_image)
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }

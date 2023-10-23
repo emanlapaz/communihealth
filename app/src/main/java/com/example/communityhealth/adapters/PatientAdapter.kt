@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.communityhealth.databinding.CardPatientBinding
 import com.example.communityhealth.models.PatientModel
+import com.squareup.picasso.Picasso
 
 interface PatientListener {
     fun onPatientClick(patient: PatientModel)
@@ -31,6 +32,7 @@ class PatientAdapter constructor(private var patients: List<PatientModel>,
             binding.patientMRN.text = patient.MRN
             binding.patientLastName.text = patient.lastName
             binding.patientFirstName.text = patient.firstName
+            Picasso.get().load(patient.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onPatientClick(patient) }
         }
     }

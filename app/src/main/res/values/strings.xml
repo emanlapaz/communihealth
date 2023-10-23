@@ -10,4 +10,5 @@
     <string name="save_patient"> Save Patient Details </string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_patient_image">Select patient image</string>
+    <string name="change_patient_image">Change patient image</string>
 </resources>
