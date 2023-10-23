@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.communityhealth.activities
 
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,7 @@ class PatientActivity : AppCompatActivity() {
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var edit = false
 
         binding = ActivityPatientBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -29,28 +32,43 @@ class PatientActivity : AppCompatActivity() {
         app = application as MainApp
         i("CommunityHealth Activity started...")
 
+        if (intent.hasExtra("patient_edit")) {
+            edit = true
+            patient = intent.extras?.getParcelable("patient_edit")!!
+            binding.patientMRN.setText(patient.MRN)
+            binding.patientLastName.setText(patient.lastName)
+            binding.patientFirstName.setText(patient.firstName)
+            binding.btnAdd.setText(R.string.save_patient)
+        }
+
         binding.btnAdd.setOnClickListener {
             patient.MRN = binding.patientMRN.text.toString().trim()
             patient.lastName = binding.patientLastName.text.toString().trim()
             patient.firstName = binding.patientFirstName.text.toString().trim()
 
             patient.lastName = patient.lastName.lowercase()
-                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } //Ensures First Letter is Capitalized
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } // Ensures First Letter is Capitalized
 
             patient.firstName = patient.firstName.lowercase()
-                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } //Ensures First Letter is Capitalized
+                .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } // Ensures First Letter is Capitalized
 
             val regexPattern = Regex("^[0-9]{6}$") // Accept only 6-digit integers
             val nameRegexPattern = Regex("^[a-zA-Z]+\$") // Accept only letters in the name fields
 
-            if (regexPattern.matches(patient.MRN) && patient.lastName.isNotEmpty() && patient.firstName.isNotEmpty() && nameRegexPattern.matches(patient.lastName) && nameRegexPattern.matches(patient.firstName)) {
-                //app.patients.add(patient.copy())
-                app.patients.create(patient.copy())
-                i("add Button Pressed: ${patient.MRN}")
+            if (regexPattern.matches(patient.MRN) && patient.lastName.isNotEmpty() && patient.firstName.isNotEmpty() && nameRegexPattern.matches(
+                    patient.lastName
+                ) && nameRegexPattern.matches(patient.firstName)
+            ) {
 
-                Snackbar
-                    .make(it, "Patient added", Snackbar.LENGTH_SHORT)
-                    .show()
+                if (intent.hasExtra("patient_edit")) {
+                    // If the "patient_edit" extra is present, update the existing patient
+                    app.patients.update(patient)
+                    i("Button Pressed: Edit - MRN: ${patient.MRN}")
+                } else {
+                    // If the extra is not present, create a new patient
+                    app.patients.create(patient.copy())
+                    i("Button Pressed: Add - MRN: ${patient.MRN}")
+                }
 
                 setResult(RESULT_OK)
                 finish()
@@ -73,14 +91,14 @@ class PatientActivity : AppCompatActivity() {
                 if (!nameRegexPattern.matches(patient.firstName)) {
                     errorPrompt += " - First name can only contain letters\n"
                 }
-
                 Snackbar
                     .make(it, errorPrompt, Snackbar.LENGTH_LONG)
                     .show()
             }
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.patient_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }

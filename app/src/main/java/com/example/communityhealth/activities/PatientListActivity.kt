@@ -32,8 +32,9 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter
-        PatientAdapter(app.patients.findAll(),this)
+        //binding.recyclerView.adapter
+        binding.recyclerView.adapter = PatientAdapter(app.patients.findAll(),this)
+        //PatientAdapter(app.patients.findAll(),this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,12 +57,12 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.patients.findAll().size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0,app.patients.findAll().size)
             }
         }
     override fun onPatientClick(patient: PatientModel) {
         val launcherIntent = Intent(this, PatientActivity::class.java)
+        launcherIntent.putExtra("patient_edit", patient)
         getClickResult.launch(launcherIntent)
     }
 
@@ -70,8 +71,7 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.patients.findAll().size)
+                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0,app.patients.findAll().size)
             }
         }
 }

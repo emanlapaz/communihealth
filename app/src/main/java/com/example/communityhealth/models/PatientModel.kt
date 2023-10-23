@@ -1,10 +1,9 @@
 package com.example.communityhealth.models
 
-data class PatientModel(var MRN:String = "",
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+@Parcelize
+data class PatientModel(var id: Long = 0,
+                        var MRN:String = "",
                         var lastName: String = "",
-                        var firstName: String = "")
-
-interface PatientStore {
-    fun findAll(): List<PatientModel>
-    fun create(patient: PatientModel)
-}
+                        var firstName: String = "") : Parcelable

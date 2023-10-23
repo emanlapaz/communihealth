@@ -6,4 +6,6 @@
     <string name="hint_patientFirstName">First Name </string>
     <string name="menu_addPatient">Add Patient</string>
     <string name="menu_cancelPatient">Cancel</string>
+    <string name="enter_patient_MRN"> Please enter a Patient MRN</string>
+    <string name="save_patient"> Save Patient Details </string>
 </resources>
