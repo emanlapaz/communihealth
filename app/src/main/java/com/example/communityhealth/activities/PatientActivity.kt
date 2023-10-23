@@ -1,16 +1,19 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.communityhealth.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.communityhealth.R
 import com.example.communityhealth.databinding.ActivityPatientBinding
+import com.example.communityhealth.helpers.showImagePicker
 import com.example.communityhealth.main.MainApp
 import com.example.communityhealth.models.PatientModel
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import timber.log.Timber.Forest.i
 import java.util.Locale
 
@@ -19,6 +22,8 @@ class PatientActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPatientBinding
     var patient = PatientModel()
     lateinit var app: MainApp
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    val IMAGE_REQUEST = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var edit = false
@@ -39,6 +44,9 @@ class PatientActivity : AppCompatActivity() {
             binding.patientLastName.setText(patient.lastName)
             binding.patientFirstName.setText(patient.firstName)
             binding.btnAdd.setText(R.string.save_patient)
+            Picasso.get()
+                .load(patient.image)
+                .into(binding.patientImage)
         }
 
         binding.btnAdd.setOnClickListener {
@@ -96,9 +104,14 @@ class PatientActivity : AppCompatActivity() {
                     .show()
             }
         }
+        binding.chooseImage.setOnClickListener {
+            showImagePicker(imageIntentLauncher)
+        }
+
+        registerImagePickerCallback()
     }
 
-        override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.patient_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -110,5 +123,23 @@ class PatientActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                            patient.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(patient.image)
+                                .into(binding.patientImage)
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
     }
 }

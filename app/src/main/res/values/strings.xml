@@ -8,4 +8,6 @@
     <string name="menu_cancelPatient">Cancel</string>
     <string name="enter_patient_MRN"> Please enter a Patient MRN</string>
     <string name="save_patient"> Save Patient Details </string>
+    <string name="button_addImage"> Add Image </string>
+    <string name="select_patient_image">Select patient image</string>
 </resources>
