@@ -111,9 +111,13 @@ class PatientActivity : AppCompatActivity() {
         binding.chooseImage.setOnClickListener {
             showImagePicker(imageIntentLauncher)
         }
-
         registerImagePickerCallback()
+
+        binding.patientAddress.setOnClickListener {
+            i ("Set Address Pressed")
+        }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.patient_menu, menu)
