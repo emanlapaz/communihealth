@@ -27,6 +27,9 @@ class PatientMemStore : PatientStore {
             foundPatient.firstName = patient.firstName
             foundPatient.lastName = patient.lastName
             foundPatient.image = patient.image
+            foundPatient.lat = patient.lat
+            foundPatient.lng = patient.lng
+            foundPatient.zoom = patient.zoom
             logAll()
         }
     }

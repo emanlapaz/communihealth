@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="com.example.communityhealth.main.MainApp"
+        android:name=".main.MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,22 +13,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommunityHealth"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDoGnREmYLn9I9oisM9iEOSOAkhMvc67bc" />
+
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map" />
+
         <activity
             android:name=".activities.PatientListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <meta-data android:name="android.app.lib_name"
+            <meta-data
+                android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity android:name=".activities.PatientActivity">
-            <meta-data android:name="android.app.lib_name"
+            <meta-data
+                android:name="android.app.lib_name"
                 android:value="" />
-
         </activity>
     </application>
 

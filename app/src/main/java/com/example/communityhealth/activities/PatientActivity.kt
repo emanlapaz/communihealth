@@ -12,6 +12,7 @@ import com.example.communityhealth.R
 import com.example.communityhealth.databinding.ActivityPatientBinding
 import com.example.communityhealth.helpers.showImagePicker
 import com.example.communityhealth.main.MainApp
+import com.example.communityhealth.models.Location
 import com.example.communityhealth.models.PatientModel
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -25,6 +26,9 @@ class PatientActivity : AppCompatActivity() {
     lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     val IMAGE_REQUEST = 1
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+    //var location = Location(53.220566,-6.659308, 16f)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var edit = false
@@ -113,9 +117,19 @@ class PatientActivity : AppCompatActivity() {
         }
         registerImagePickerCallback()
 
+
         binding.patientAddress.setOnClickListener {
-            i ("Set Address Pressed")
+            val location = Location(53.220566,-6.659308, 16f)
+            if (patient.zoom != 0f){
+                location.lat = patient.lat
+                location.lng = patient.lng
+                location.zoom = patient.zoom
+            }
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
         }
+        registerMapCallback()
     }
 
 
@@ -145,6 +159,25 @@ class PatientActivity : AppCompatActivity() {
                                 .load(patient.image)
                                 .into(binding.patientImage)
                             binding.chooseImage.setText(R.string.change_patient_image)
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
+                            i("Location == $location")
+                            patient.lat = location.lat
+                            patient.lng = location. lng
+                            patient.zoom = location.zoom
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
