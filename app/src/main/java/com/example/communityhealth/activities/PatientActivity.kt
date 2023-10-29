@@ -113,7 +113,7 @@ class PatientActivity : AppCompatActivity() {
             }
         }
         binding.chooseImage.setOnClickListener {
-            showImagePicker(imageIntentLauncher)
+            showImagePicker(imageIntentLauncher,this)
         }
         registerImagePickerCallback()
 
@@ -154,7 +154,12 @@ class PatientActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            patient.image = result.data!!.data!!
+
+                            val image = result.data!!.data!!
+                            contentResolver.takePersistableUriPermission(image,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            patient.image = image
+
                             Picasso.get()
                                 .load(patient.image)
                                 .into(binding.patientImage)
