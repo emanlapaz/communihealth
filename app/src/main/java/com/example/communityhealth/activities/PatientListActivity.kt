@@ -19,6 +19,7 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityPatientListBinding
+    private var position: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,9 +61,10 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
                 (binding.recyclerView.adapter)?.notifyItemRangeChanged(0,app.patients.findAll().size)
             }
         }
-    override fun onPatientClick(patient: PatientModel) {
+    override fun onPatientClick(patient: PatientModel, pos: Int) {
         val launcherIntent = Intent(this, PatientActivity::class.java)
         launcherIntent.putExtra("patient_edit", patient)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
 
@@ -71,7 +73,10 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(0,app.patients.findAll().size)
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.patients.findAll().size)
             }
+            else
+                if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
 }

@@ -41,7 +41,23 @@ class PatientJSONStore(private val context: Context) : PatientStore {
     }
 
     override fun update(patient: PatientModel) {
-        // todo
+        val patientsList = findAll() as ArrayList<PatientModel>
+        var foundPatient: PatientModel? = patientsList.find { p -> p.id == patient.id }
+        if (foundPatient != null) {
+            foundPatient.MRN = patient.MRN
+            foundPatient.firstName = patient.firstName
+            foundPatient.lastName = patient.lastName
+            foundPatient.image = patient.image
+            foundPatient.lat = patient.lat
+            foundPatient.lng = patient.lng
+            foundPatient.zoom = patient.zoom
+        }
+        serialize()
+    }
+
+    override fun delete(patient: PatientModel) {
+        patients.remove(patient)
+        serialize()
     }
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(patients, listType)

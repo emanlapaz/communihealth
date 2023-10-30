@@ -34,8 +34,9 @@ class PatientMemStore : PatientStore {
         }
     }
 
-
-
+    override fun delete(patient: PatientModel) {
+        patients.remove(patient)
+    }
         private fun logAll() {
             patients.forEach { i("${it}") }
         }

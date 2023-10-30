@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso
 import timber.log.Timber.Forest.i
 import java.util.Locale
 
-class PatientActivity : AppCompatActivity() {
+class PatientActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityPatientBinding
     var patient = PatientModel()
@@ -27,11 +27,13 @@ class PatientActivity : AppCompatActivity() {
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     val IMAGE_REQUEST = 1
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+
+    var edit = false
     //var location = Location(53.220566,-6.659308, 16f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var edit = false
+
 
         binding = ActivityPatientBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -135,14 +137,18 @@ class PatientActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.patient_menu, menu)
+        if (edit) menu.getItem(0).isVisible = true
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_cancel -> {
+            R.id.item_delete -> {
+                setResult(99)
+                app.patients.delete(patient)
                 finish()
             }
+            R.id.item_cancel -> {  finish()  }
         }
         return super.onOptionsItemSelected(item)
     }
