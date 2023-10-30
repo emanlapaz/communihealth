@@ -49,9 +49,18 @@ class PatientListActivity : AppCompatActivity(), PatientListener {
                 val launcherIntent = Intent(this, PatientActivity::class.java)
                 getResult.launch(launcherIntent)
             }
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, PatientMapsActivity::class.java)
+                mapIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
+
+    private val mapIntentLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        )    { }
 
     private val getResult =
         registerForActivityResult(

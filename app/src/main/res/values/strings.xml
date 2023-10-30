@@ -12,7 +12,8 @@
     <string name="select_patient_image">Select patient image</string>
     <string name="change_patient_image">Change patient image</string>
     <string name="button_address">Set Patient Address</string>
-    <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="menu_deletePatient">Delete Patient</string>
+    <string name="title_activity_patient_maps">Community Health Patients Map</string>
+
 </resources>

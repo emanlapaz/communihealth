@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommunityHealth"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activities.PatientMapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_patient_maps"
+            android:theme="@style/Theme.CommunityHealth" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -26,7 +30,6 @@
             android:name=".activities.MapActivity"
             android:exported="false"
             android:label="@string/title_activity_map" />
-
         <activity
             android:name=".activities.PatientListActivity"
             android:exported="true">
