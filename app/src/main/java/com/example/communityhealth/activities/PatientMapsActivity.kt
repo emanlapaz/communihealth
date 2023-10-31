@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 
 
 class PatientMapsActivity :AppCompatActivity(), GoogleMap.OnMarkerClickListener {
@@ -73,7 +74,13 @@ class PatientMapsActivity :AppCompatActivity(), GoogleMap.OnMarkerClickListener 
         }
     }
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentMRN.text = marker.title
+        val tag = marker.tag as Long
+        val patient = app.patients.findById(tag)
+
+        contentBinding.currentMRN.text = patient!!.MRN
+        contentBinding.currentFirstName.text = patient.firstName
+        contentBinding.currentLastName.text = patient.lastName
+        Picasso.get().load(patient.image).into(contentBinding.currentImage)
         return false
     }
 }

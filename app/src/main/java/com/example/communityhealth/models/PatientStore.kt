@@ -4,4 +4,5 @@ interface PatientStore {
     fun create(patient: PatientModel)
     fun update(patient: PatientModel)
     fun delete(patient: PatientModel)
+    fun findById(id:Long) : PatientModel?
 }

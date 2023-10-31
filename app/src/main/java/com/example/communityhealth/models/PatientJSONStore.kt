@@ -55,6 +55,11 @@ class PatientJSONStore(private val context: Context) : PatientStore {
         serialize()
     }
 
+    override fun findById(id:Long) : PatientModel? {
+        val foundPatient: PatientModel? = patients.find { it.id == id }
+        return foundPatient
+    }
+
     override fun delete(patient: PatientModel) {
         patients.remove(patient)
         serialize()

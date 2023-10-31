@@ -40,7 +40,9 @@ class PatientMemStore : PatientStore {
         private fun logAll() {
             patients.forEach { i("${it}") }
         }
+
+    override fun findById(id:Long) : PatientModel? {
+        val foundPatient: PatientModel? = patients.find { it.id == id }
+        return foundPatient
     }
-
-
-// work on edit/update
+}
