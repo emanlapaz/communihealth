@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
-        android:name=".main.MainApp"
+        android:name="com.example.communityhealth.main.MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,7 +17,7 @@
         android:theme="@style/Theme.CommunityHealth"
         tools:targetApi="31">
         <activity
-            android:name=".activities.PatientMapsActivity"
+            android:name=".views.map.PatientMapView"
             android:exported="false"
             android:label="@string/title_activity_patient_maps"
             android:theme="@style/Theme.CommunityHealth" />
@@ -27,11 +27,11 @@
             android:value="AIzaSyDoGnREmYLn9I9oisM9iEOSOAkhMvc67bc" />
 
         <activity
-            android:name=".activities.MapActivity"
+            android:name=".views.editlocation.EditLocationView"
             android:exported="false"
             android:label="@string/title_activity_map" />
         <activity
-            android:name=".activities.PatientListActivity"
+            android:name=".views.patientlist.PatientListView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".activities.PatientActivity">
+        <activity android:name=".views.patient.PatientView">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

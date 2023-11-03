@@ -6,7 +6,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.PatientMapsActivity">
+    tools:context="com.example.communityhealth.views.map.PatientMapView">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"

@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:visible="false"
+        android:id="@+id/item_save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/menu_savePatient"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/item_delete"
+        android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/menu_deletePatient"
-        app:showAsAction="always"/>
-
+        android:visible="false"
+        app:showAsAction="always" />
     <item
         android:id="@+id/item_cancel"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/menu_cancelPatient"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 </menu>

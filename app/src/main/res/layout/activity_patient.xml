@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.communityhealth.activities.PatientActivity">
+    tools:context="com.example.communityhealth.views.patient.PatientView">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
@@ -66,18 +66,6 @@
             app:layout_constraintVertical_bias="0.574" />
 
         <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="352dp"
-            android:layout_height="51dp"
-            android:text="@string/button_addPatient"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.932" />
-
-        <Button
             android:id="@+id/chooseImage"
             android:layout_width="157dp"
             android:layout_height="70dp"
@@ -102,11 +90,11 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <Button
-            android:id="@+id/patientAddress"
+            android:id="@+id/patientLocation"
             android:layout_width="158dp"
             android:layout_height="70dp"
             android:layout_marginTop="484dp"
-            android:text="@string/button_address"
+            android:text="@string/button_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.911"
             app:layout_constraintStart_toStartOf="parent"
