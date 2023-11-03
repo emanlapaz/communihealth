@@ -16,5 +16,6 @@
     <string name="menu_deletePatient">Delete Patient</string>
     <string name="title_activity_patient_maps">Community Health Patients Map</string>
     <string name="menu_savePatient">Save</string>
+    <string name="app_logo_description">CommuiHealth</string>
 
 </resources>

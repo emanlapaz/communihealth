@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.communityhealth.R
-import com.example.communityhealth.activities.LoginActivity
+import com.example.communityhealth.views.user.LoginView
 import com.example.communityhealth.databinding.ActivityPatientListBinding
 import com.example.communityhealth.main.MainApp
 import com.example.communityhealth.models.PatientModel
@@ -68,8 +68,8 @@ class PatientListView : AppCompatActivity(), PatientListener {
         binding.recyclerView.adapter?.notifyItemRemoved(position)
     }
     fun navigateToLogin() {
-        val loginIntent = Intent(this, LoginActivity::class.java)
+        val loginIntent = Intent(this, LoginView::class.java)
         startActivity(loginIntent)
-        finish() // Close the PatientListView
+        finish()
     }
 }
