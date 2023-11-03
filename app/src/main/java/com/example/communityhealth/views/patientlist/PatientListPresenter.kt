@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.startActivity
+import com.example.communityhealth.activities.LoginActivity
 import com.example.communityhealth.main.MainApp
 import com.example.communityhealth.models.PatientModel
 import com.example.communityhealth.views.map.PatientMapView
@@ -39,6 +41,10 @@ class PatientListPresenter(val view: PatientListView) {
     fun doShowPatientsMap() {
         val launcherIntent = Intent(view, PatientMapView::class.java)
         mapIntentLauncher.launch(launcherIntent)
+    }
+
+    fun doLogOut() {
+        view.navigateToLogin()
     }
 
     private fun registerRefreshCallback() {

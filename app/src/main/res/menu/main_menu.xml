@@ -13,4 +13,9 @@
         android:icon="@android:drawable/ic_menu_mapmode"
         android:title="@string/menu_addPatient"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/item_logout"
+        android:title="Log Out"
+        app:showAsAction="ifRoom" />
 </menu>

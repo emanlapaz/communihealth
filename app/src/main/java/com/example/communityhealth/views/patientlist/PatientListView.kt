@@ -1,11 +1,13 @@
 package com.example.communityhealth.views.patientlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.communityhealth.R
+import com.example.communityhealth.activities.LoginActivity
 import com.example.communityhealth.databinding.ActivityPatientListBinding
 import com.example.communityhealth.main.MainApp
 import com.example.communityhealth.models.PatientModel
@@ -42,6 +44,7 @@ class PatientListView : AppCompatActivity(), PatientListener {
         when (item.itemId) {
             R.id.item_add -> { presenter.doAddPatient() }
             R.id.item_map -> { presenter.doShowPatientsMap() }
+            R.id.item_logout -> { presenter.doLogOut() }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -63,5 +66,10 @@ class PatientListView : AppCompatActivity(), PatientListener {
 
     fun onDelete(position : Int) {
         binding.recyclerView.adapter?.notifyItemRemoved(position)
+    }
+    fun navigateToLogin() {
+        val loginIntent = Intent(this, LoginActivity::class.java)
+        startActivity(loginIntent)
+        finish() // Close the PatientListView
     }
 }
