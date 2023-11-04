@@ -18,18 +18,31 @@ class LoginView: AppCompatActivity() {
         app = application as MainApp
 
         setupLoginButton()
+        setupSignUpButton()
     }
 
     private fun setupLoginButton() {
         val loginButton = findViewById<Button>(R.id.btn_login_login)
 
         loginButton.setOnClickListener {
-            navigateToPatientListView()
+            goToPatientListView()
+        }
+    }
+    private fun setupSignUpButton() {
+        val signUpButton = findViewById<Button>(R.id.btn_signup_signup)
+
+        signUpButton.setOnClickListener {
+            goToSignUpView()
         }
     }
 
-    private fun navigateToPatientListView() {
+    private fun goToPatientListView() {
         val intent = Intent(this, PatientListView::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToSignUpView() {
+        val intent = Intent(this, SignUpView::class.java) // Replace SignUpActivity with the actual name of your sign-up activity
         startActivity(intent)
     }
 }

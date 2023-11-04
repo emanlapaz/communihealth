@@ -14,11 +14,4 @@
         android:contentDescription="@string/app_logo_description" />
 
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewLogo"
-        android:layout_centerInParent="true"
-    android:visibility="visible" />
 </LinearLayout>
