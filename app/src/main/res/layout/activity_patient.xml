@@ -40,79 +40,81 @@
 
         <EditText
             android:id="@+id/patientMRN"
-            android:layout_width="343dp"
-            android:layout_height="43dp"
+            android:layout_width="346dp"
+            android:layout_height="57dp"
             android:ems="10"
             android:hint="@string/hint_patientMRN"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.467" />
+            app:layout_constraintVertical_bias="0.663" />
 
         <EditText
             android:id="@+id/patientFirstName"
-            android:layout_width="155dp"
-            android:layout_height="61dp"
+            android:layout_width="168dp"
+            android:layout_height="60dp"
             android:ems="10"
             android:hint="@string/hint_patientFirstName"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.574" />
+            app:layout_constraintVertical_bias="0.772" />
 
         <Button
             android:id="@+id/chooseImage"
-            android:layout_width="157dp"
-            android:layout_height="70dp"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
             android:text="@string/button_addImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.751" />
+            app:layout_constraintVertical_bias="0.524" />
 
         <ImageView
             android:id="@+id/patientImage"
-            android:layout_width="372dp"
-            android:layout_height="227dp"
+            android:layout_width="316dp"
+            android:layout_height="266dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.139"
+            app:layout_constraintVertical_bias="0.151"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <Button
             android:id="@+id/patientLocation"
-            android:layout_width="158dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="484dp"
+            android:layout_width="348dp"
+            android:layout_height="72dp"
             android:text="@string/button_location"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.911"
+            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.912" />
 
         <EditText
             android:id="@+id/patientLastName"
-            android:layout_width="159dp"
-            android:layout_height="63dp"
+            android:layout_width="155dp"
+            android:layout_height="57dp"
             android:ems="10"
             android:hint="@string/hint_patientLastName"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.905"
+            app:layout_constraintHorizontal_bias="0.912"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.576" />
+            app:layout_constraintVertical_bias="0.773" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,11 +3,13 @@ package com.example.communityhealth.views.user
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import com.example.communityhealth.R
 import com.example.communityhealth.models.UserJSONStore
 import com.example.communityhealth.models.UserModel
+import com.google.android.material.snackbar.Snackbar
 
 class SignUpView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,9 +48,23 @@ class SignUpView : AppCompatActivity() {
 
                 // Redirect to the login view
                 goToLoginView()
+            } else {
+                // Show a Snackbar if username or password is empty
+                showEmptyFieldSnackbar()
             }
         }
     }
+
+    private fun showEmptyFieldSnackbar() {
+        val rootView = findViewById<View>(android.R.id.content)
+        val snackbar = Snackbar.make(
+            rootView,
+            "Username and password cannot be empty",
+            Snackbar.LENGTH_SHORT
+        )
+        snackbar.show()
+    }
+
     private fun goToLoginView() {
         val intent = Intent(this, LoginView::class.java)
         startActivity(intent)
