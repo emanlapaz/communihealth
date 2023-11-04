@@ -1,5 +1,6 @@
 package com.example.communityhealth.views.editlocation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.communityhealth.R
@@ -39,8 +40,8 @@ class EditLocationView : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onMarkerDragEnd(marker: Marker) {
         presenter.doUpdateLocation(marker.position.latitude,
-            marker.position.longitude,
-            map.cameraPosition.zoom)
+                                    marker.position.longitude,
+                                    map.cameraPosition.zoom)
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
@@ -48,9 +49,8 @@ class EditLocationView : AppCompatActivity(), OnMapReadyCallback,
         return false
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
-        super.onBackPressed()
         presenter.doOnBackPressed()
-
     }
 }

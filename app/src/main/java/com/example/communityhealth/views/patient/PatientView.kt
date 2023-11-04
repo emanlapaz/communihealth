@@ -21,7 +21,6 @@ class PatientView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityPatientBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbarAdd.title = title
@@ -78,7 +77,6 @@ class PatientView : AppCompatActivity() {
         if (patient.image != Uri.EMPTY) {
             binding.chooseImage.setText(R.string.change_patient_image)
         }
-
     }
 
     fun updateImage(image: Uri){

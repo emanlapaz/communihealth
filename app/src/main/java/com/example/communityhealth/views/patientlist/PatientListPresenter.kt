@@ -42,7 +42,7 @@ class PatientListPresenter(val view: PatientListView) {
     }
 
     fun doLogOut() {
-        view.navigateToLogin()
+        view.goToLogin() //?recheck
     }
 
     private fun registerRefreshCallback() {

@@ -41,8 +41,7 @@ class PatientMemStore : PatientStore {
             patients.forEach { i("${it}") }
         }
 
-    override fun findById(id:Long) : PatientModel? {
-        val foundPatient: PatientModel? = patients.find { it.id == id }
-        return foundPatient
+    override fun findById(id: Long): PatientModel? {
+        return patients.find { it.id == id }
     }
 }

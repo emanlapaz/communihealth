@@ -34,6 +34,11 @@ class PatientJSONStore(private val context: Context) : PatientStore {
         return patients
     }
 
+    override fun findById(id:Long) : PatientModel? {
+        val foundPlacemark: PatientModel? = patients.find { it.id == id }
+        return foundPlacemark
+    }
+
     override fun create(patient: PatientModel) {
         patient.id = generateRandomId()
         patients.add(patient)
@@ -53,11 +58,6 @@ class PatientJSONStore(private val context: Context) : PatientStore {
             foundPatient.zoom = patient.zoom
         }
         serialize()
-    }
-
-    override fun findById(id:Long) : PatientModel? {
-        val foundPatient: PatientModel? = patients.find { it.id == id }
-        return foundPatient
     }
 
     override fun delete(patient: PatientModel) {

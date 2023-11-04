@@ -6,8 +6,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-
-
 class PatientMapPresenter(val view: PatientMapView) {
     var app: MainApp
 
@@ -25,7 +23,6 @@ class PatientMapPresenter(val view: PatientMapView) {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
         }
     }
-
     fun doMarkerSelected(marker: Marker) {
         val tag = marker.tag as Long
         val patient = app.patients.findById(tag)

@@ -67,7 +67,7 @@ class PatientListView : AppCompatActivity(), PatientListener {
     fun onDelete(position : Int) {
         binding.recyclerView.adapter?.notifyItemRemoved(position)
     }
-    fun navigateToLogin() {
+    fun goToLogin() {
         val loginIntent = Intent(this, LoginView::class.java)
         startActivity(loginIntent)
         finish()

@@ -5,14 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.communityhealth.databinding.CardPatientBinding
 import com.example.communityhealth.models.PatientModel
-import com.example.communityhealth.views.patientlist.PatientListView
 import com.squareup.picasso.Picasso
 interface PatientListener {
     fun onPatientClick(patient: PatientModel, position : Int)
 }
-class PatientAdapter(private var patients: List<PatientModel>,
-                     private val listener: PatientListView
-) :
+class PatientAdapter constructor(private var patients: List<PatientModel>,
+                                   private val listener: PatientListener) :
     RecyclerView.Adapter<PatientAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
