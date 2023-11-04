@@ -61,13 +61,24 @@ class LoginView: AppCompatActivity() {
 
             if (matchingUser != null) {
                 // Successful login
-                goToPatientListView()
+
+                // Get the user's username after a successful user login
+                val loggedInUserName = matchingUser.username
+
+                // Start the SplashScreenActivity and pass the username
+                val intent = Intent(this@LoginView, welcomeSplash::class.java)
+                intent.putExtra("userName", loggedInUserName)
+                startActivity(intent)
+
+                // Finish the LoginView to prevent going back to it
+                finish()
             } else {
                 // Invalid login
                 showLoginErrorSnackbar()
             }
         }
     }
+
     private fun showLoginErrorSnackbar() {
         val rootView = findViewById<View>(android.R.id.content)
         val snackbar = Snackbar.make(
@@ -76,11 +87,6 @@ class LoginView: AppCompatActivity() {
             Snackbar.LENGTH_SHORT
         )
         snackbar.show()
-    }
-
-    private fun goToPatientListView() {
-        val intent = Intent(this, PatientListView::class.java)
-        startActivity(intent)
     }
 
     private fun goToSignUpView() {
