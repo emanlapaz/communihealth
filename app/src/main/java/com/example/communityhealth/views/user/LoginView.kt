@@ -2,11 +2,18 @@ package com.example.communityhealth.views.user
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.communityhealth.R
 import com.example.communityhealth.main.MainApp
+import com.example.communityhealth.models.UserJSONStore
 import com.example.communityhealth.views.patientlist.PatientListView
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginView: AppCompatActivity() {
 
@@ -25,7 +32,14 @@ class LoginView: AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.btn_login_login)
 
         loginButton.setOnClickListener {
-            goToPatientListView()
+            val usernameEditText = findViewById<EditText>(R.id.et_login_username)
+            val passwordEditText = findViewById<EditText>(R.id.et_login_password)
+
+            val enteredUsername = usernameEditText.text.toString()
+            val enteredPassword = passwordEditText.text.toString()
+
+            // Check if the entered username and password match any stored user
+            checkUserCredentials(enteredUsername, enteredPassword)
         }
     }
     private fun setupSignUpButton() {
@@ -34,6 +48,34 @@ class LoginView: AppCompatActivity() {
         signUpButton.setOnClickListener {
             goToSignUpView()
         }
+    }
+    private fun checkUserCredentials(enteredUsername: String, enteredPassword: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            val userStore = UserJSONStore(this@LoginView)
+
+            val users = userStore.findAll()
+
+            val matchingUser = users.find { user ->
+                user.username == enteredUsername && user.password == enteredPassword
+            }
+
+            if (matchingUser != null) {
+                // Successful login
+                goToPatientListView()
+            } else {
+                // Invalid login
+                showLoginErrorSnackbar()
+            }
+        }
+    }
+    private fun showLoginErrorSnackbar() {
+        val rootView = findViewById<View>(android.R.id.content)
+        val snackbar = Snackbar.make(
+            rootView,
+            "Invalid username or password",
+            Snackbar.LENGTH_SHORT
+        )
+        snackbar.show()
     }
 
     private fun goToPatientListView() {
