@@ -12,16 +12,18 @@ class welcomeSplash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome_splash)
-        val userName = intent.getStringExtra("userName")
+
+        val userName = intent.getStringExtra("userName") ?: ""
 
         val welcomeTextView = findViewById<TextView>(R.id.welcomeSplash)
         welcomeTextView.text = "Welcome $userName"
 
-        // Use a Handler to delay the transition to the main screen
-        val handler = Handler()
-        handler.postDelayed({
-            // Start the main screen of your application
-            val intent = Intent(this, PatientListView::class.java)
+
+        Handler().postDelayed({
+
+            val intent = Intent(this, PatientListView::class.java).apply {
+                putExtra("userName", userName)
+            }
             startActivity(intent)
             finish()
         }, 2000)

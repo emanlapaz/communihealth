@@ -16,10 +16,9 @@
 
         <ImageView
             android:id="@+id/imageIcon"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="96dp"
+            android:layout_height="79dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
             android:contentDescription="@string/change_patient_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

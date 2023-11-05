@@ -10,9 +10,13 @@ import com.example.communityhealth.R
 import com.example.communityhealth.views.user.LoginView
 import com.example.communityhealth.databinding.ActivityPatientListBinding
 import com.example.communityhealth.main.MainApp
+import com.example.communityhealth.models.PatientJSONStore
 import com.example.communityhealth.models.PatientModel
 import com.example.communityhealth.patient.adapters.PatientAdapter
 import com.example.communityhealth.patient.adapters.PatientListener
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class PatientListView : AppCompatActivity(), PatientListener {
 
@@ -20,6 +24,7 @@ class PatientListView : AppCompatActivity(), PatientListener {
     private lateinit var binding: ActivityPatientListBinding
     lateinit var presenter: PatientListPresenter
     private var position: Int = 0
+    private var userName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,7 @@ class PatientListView : AppCompatActivity(), PatientListener {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
+        userName = intent.getStringExtra("userName") ?: ""
         loadPatients()
     }
 
@@ -55,13 +61,31 @@ class PatientListView : AppCompatActivity(), PatientListener {
     }
 
     private fun loadPatients() {
-        binding.recyclerView.adapter = PatientAdapter(presenter.getPatients(), this)
-        onRefresh()
+        GlobalScope.launch(Dispatchers.Main) {
+            val patientStore = PatientJSONStore(this@PatientListView)
+            val patients = if (userName.isNotEmpty()) {
+                patientStore.findByUsername(userName)
+            } else {
+                patientStore.findAll()
+            }
+            binding.recyclerView.adapter = PatientAdapter(patients, this@PatientListView)
+            onRefresh()
+        }
     }
 
     fun onRefresh() {
-        binding.recyclerView.adapter?.
-        notifyItemRangeChanged(0,presenter.getPatients().size)
+        GlobalScope.launch(Dispatchers.Main) {
+            val patientStore = PatientJSONStore(this@PatientListView)
+            val updatedPatients = if (userName.isNotEmpty()) {
+                patientStore.findByUsername(userName)
+            } else {
+                patientStore.findAll()
+            }
+            (binding.recyclerView.adapter as? PatientAdapter)?.let { adapter ->
+                adapter.patients = updatedPatients
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     fun onDelete(position : Int) {

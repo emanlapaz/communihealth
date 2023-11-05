@@ -40,7 +40,11 @@ class PatientJSONStore(private val context: Context) : PatientStore {
     }
 
     override fun create(patient: PatientModel) {
+        val sharedPreferences = context.getSharedPreferences("YourPrefName", Context.MODE_PRIVATE)
+        val loggedInUserName = sharedPreferences.getString("LoggedInUserNameKey", "defaultUserName") ?: "defaultUserName"
+
         patient.id = generateRandomId()
+        patient.userName = loggedInUserName // Set the username from shared preferences
         patients.add(patient)
         serialize()
     }
@@ -56,8 +60,13 @@ class PatientJSONStore(private val context: Context) : PatientStore {
             foundPatient.lat = patient.lat
             foundPatient.lng = patient.lng
             foundPatient.zoom = patient.zoom
+            foundPatient.userName = patient.userName
         }
         serialize()
+    }
+
+    fun findByUsername(userName: String): List<PatientModel> {
+        return patients.filter { it.userName == userName }
     }
 
     override fun delete(patient: PatientModel) {

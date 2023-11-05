@@ -53,7 +53,7 @@ class PatientView : AppCompatActivity() {
                     Snackbar.make(binding.root, R.string.enter_patient_MRN, Snackbar.LENGTH_LONG)
                         .show()
                 } else {
-                    // presenter.cachePlacemark(binding.placemarkTitle.text.toString(), binding.description.text.toString())
+
                     presenter.doAddOrSave(binding.patientMRN.text.toString(), binding.patientFirstName.text.toString(), binding.patientLastName.text.toString())
                 }
             }

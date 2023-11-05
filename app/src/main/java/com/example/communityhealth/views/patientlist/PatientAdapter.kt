@@ -9,8 +9,9 @@ import com.squareup.picasso.Picasso
 interface PatientListener {
     fun onPatientClick(patient: PatientModel, position : Int)
 }
-class PatientAdapter constructor(private var patients: List<PatientModel>,
-                                   private val listener: PatientListener) :
+class PatientAdapter constructor(
+    var patients: List<PatientModel>,
+    private val listener: PatientListener) :
     RecyclerView.Adapter<PatientAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {

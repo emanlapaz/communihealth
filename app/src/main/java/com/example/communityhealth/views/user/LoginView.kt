@@ -1,5 +1,6 @@
 package com.example.communityhealth.views.user
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -61,16 +62,15 @@ class LoginView: AppCompatActivity() {
 
             if (matchingUser != null) {
                 // Successful login
-
-                // Get the user's username after a successful user login
-                val loggedInUserName = matchingUser.username
+                // Save the logged-in username in shared preferences
+                val sharedPreferences = getSharedPreferences("YourPrefName", Context.MODE_PRIVATE)
+                sharedPreferences.edit().putString("LoggedInUserNameKey", matchingUser.username).apply()
 
                 // Start the SplashScreenActivity and pass the username
-                val intent = Intent(this@LoginView, welcomeSplash::class.java)
-                intent.putExtra("userName", loggedInUserName)
+                val intent = Intent(this@LoginView, welcomeSplash::class.java).apply {
+                    putExtra("userName", matchingUser.username)
+                }
                 startActivity(intent)
-
-                // Finish the LoginView to prevent going back to it
                 finish()
             } else {
                 // Invalid login
@@ -78,6 +78,7 @@ class LoginView: AppCompatActivity() {
             }
         }
     }
+
 
     private fun showLoginErrorSnackbar() {
         val rootView = findViewById<View>(android.R.id.content)
