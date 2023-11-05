@@ -45,6 +45,7 @@ Bugs: To follow
 
 Future Plans: To Follow
 
+References: SETU Mobile App Materials, CHATGPT, Google APIs Documentation, Android Studio Documentation -- to follow citations
 
 
 
