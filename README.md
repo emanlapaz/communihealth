@@ -37,6 +37,17 @@ For the address the user can set the address using the pointer on the certain lo
 
 <img src="https://github.com/emanlapaz/communihealth/blob/master/app/src/main/res/drawable/patient_address.png">
 
+The Map Icon on the patient List will display all the Patient Locations. Clicking the marker will display the Patient Data
+
+<img src="https://github.com/emanlapaz/communihealth/blob/master/app/src/main/res/drawable/patient_map_card.png">
+
+Bugs: To follow
+
+Future Plans: To Follow
+
+
+
+
 
 
 
