@@ -28,15 +28,22 @@ class PatientMapView : AppCompatActivity() , GoogleMap.OnMarkerClickListener{
 
         contentBinding = ContentPatientMapsBinding.bind(binding.root)
 
+        //Initialize map and populate with markers
         contentBinding.mapView.onCreate(savedInstanceState)
         contentBinding.mapView.getMapAsync{
             presenter.doPopulateMap(it)
         }
     }
+
+    //Displays patient data when the map is clicked
     fun showPatient(patient: PatientModel) {
         contentBinding.currentMRN.text = patient.MRN
         contentBinding.currentFirstName.text = patient.firstName
         contentBinding.currentLastName.text = patient.lastName
+        contentBinding.currentEircode.text = patient.eircode
+        contentBinding.currentRoad.text = patient.road
+        contentBinding.currentTown.text = patient.town
+
         Picasso.get()
             .load(patient.image)
             .into(contentBinding.currentImage)

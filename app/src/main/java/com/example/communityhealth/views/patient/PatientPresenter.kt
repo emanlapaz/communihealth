@@ -23,6 +23,7 @@ class PatientPresenter(private val view: PatientView) {
     var edit = false;
 
     init {
+        //Checks if editing an existing patient or creates a new one
         if (view.intent.hasExtra("patient_edit")) {
             edit = true
             patient = view.intent.extras?.getParcelable("patient_edit")!!
@@ -32,6 +33,7 @@ class PatientPresenter(private val view: PatientView) {
         registerMapCallback()
     }
 
+    //Handles adding or saving
     fun doAddOrSave(MRN: String, firstName: String, lastName: String) {
         patient.MRN = MRN
         patient.firstName = firstName
@@ -45,6 +47,7 @@ class PatientPresenter(private val view: PatientView) {
         view.finish()
     }
 
+    //Exits view when cancel is pressed
     fun doCancel() {
         view.finish()
     }
@@ -54,7 +57,7 @@ class PatientPresenter(private val view: PatientView) {
         app.patients.delete(patient)
         view.finish()
     }
-
+    // Selects patient Image
     fun doSelectImage() {
         showImagePicker(imageIntentLauncher,view)
     }

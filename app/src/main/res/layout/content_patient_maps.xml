@@ -38,21 +38,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="24dp"
-                android:text="TextView"
+                android:text="MRN"
                 app:layout_constraintBottom_toTopOf="@+id/currentFirstName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.091"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/currentImage"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.545" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/currentFirstName"
                 android:layout_width="62dp"
                 android:layout_height="19dp"
-                android:layout_marginStart="48dp"
-                android:layout_marginBottom="60dp"
-                android:text="TextView"
+                android:layout_marginStart="36dp"
+                android:layout_marginBottom="76dp"
+                android:text="First Name"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/currentImage" />
 
@@ -60,13 +60,51 @@
                 android:id="@+id/currentLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Last Name"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.149"
+                app:layout_constraintHorizontal_bias="0.175"
                 app:layout_constraintStart_toEndOf="@+id/currentFirstName"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.52" />
+                app:layout_constraintVertical_bias="0.392" />
+
+            <TextView
+                android:id="@+id/currentEircode"
+                android:layout_width="109dp"
+                android:layout_height="21dp"
+                android:text="Eircode"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.667"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.926" />
+
+            <TextView
+                android:id="@+id/currentRoad"
+                android:layout_width="109dp"
+                android:layout_height="21dp"
+                android:text="Road"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.667"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.585" />
+
+            <TextView
+                android:id="@+id/currentTown"
+                android:layout_width="109dp"
+                android:layout_height="21dp"
+                android:text="Town"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.667"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.756" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

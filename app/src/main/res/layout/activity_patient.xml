@@ -40,31 +40,30 @@
 
         <EditText
             android:id="@+id/patientMRN"
-            android:layout_width="346dp"
-            android:layout_height="57dp"
+            android:layout_width="163dp"
+            android:layout_height="48dp"
             android:ems="10"
             android:hint="@string/hint_patientMRN"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.432"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.663" />
+            app:layout_constraintVertical_bias="0.563" />
 
         <EditText
             android:id="@+id/patientFirstName"
-            android:layout_width="168dp"
-            android:layout_height="60dp"
+            android:layout_width="157dp"
+            android:layout_height="58dp"
             android:ems="10"
             android:hint="@string/hint_patientFirstName"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintHorizontal_bias="0.07"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.772" />
+            app:layout_constraintVertical_bias="0.647" />
 
         <Button
             android:id="@+id/chooseImage"
@@ -76,18 +75,18 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.524" />
+            app:layout_constraintVertical_bias="0.467" />
 
         <ImageView
             android:id="@+id/patientImage"
-            android:layout_width="316dp"
-            android:layout_height="266dp"
+            android:layout_width="405dp"
+            android:layout_height="244dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.151"
+            app:layout_constraintVertical_bias="0.137"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <Button
@@ -97,10 +96,10 @@
             android:text="@string/button_location"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.571"
+            app:layout_constraintHorizontal_bias="0.542"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.912" />
+            app:layout_constraintVertical_bias="0.975" />
 
         <EditText
             android:id="@+id/patientLastName"
@@ -111,10 +110,45 @@
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.912"
+            app:layout_constraintHorizontal_bias="0.925"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.773" />
+            app:layout_constraintVertical_bias="0.646" />
+
+        <TextView
+            android:id="@+id/currentEircode"
+            android:layout_width="185dp"
+            android:layout_height="49dp"
+            android:text="Eircode"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.858" />
+
+        <TextView
+            android:id="@+id/currentRoad"
+            android:layout_width="182dp"
+            android:layout_height="42dp"
+            android:text="Road"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.73" />
+
+        <TextView
+            android:id="@+id/currentTown"
+            android:layout_width="182dp"
+            android:layout_height="38dp"
+            android:text="Town"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.788" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

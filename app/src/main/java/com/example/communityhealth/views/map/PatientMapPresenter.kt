@@ -13,13 +13,21 @@ class PatientMapPresenter(val view: PatientMapView) {
         app = view.application as MainApp
     }
 
+    // Populates maps wiht Patient Markers
     fun doPopulateMap(map: GoogleMap) {
+
         map.uiSettings.setZoomControlsEnabled(true)
+
         map.setOnMarkerClickListener(view)
+
         app.patients.findAll().forEach {
             val loc = LatLng(it.lat, it.lng)
             val options = MarkerOptions().title(it.MRN).position(loc)
+
+            //Adds a marker in the map with the Patient ID
             map.addMarker(options)?.tag = it.id
+
+            //Move Camera to patients location
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
         }
     }

@@ -18,11 +18,16 @@ class EditLocationPresenter(private val view: EditLocationView) {
 
     var location: Location = view.intent.extras?.getParcelable("location") ?: Location()
 
+    //initialize map
     fun initMap(map: GoogleMap) {
-        // Set the map type to default (normal) view
+
+        //set map type
         map.mapType = GoogleMap.MAP_TYPE_NORMAL
 
+        //creates LatLng object
         val loc = LatLng(location.lat, location.lng)
+
+        //gets Address details
         getAddressDetails(view, loc) { roadName, town, eircode ->
             val snippet = if (town == "Unknown Town" && eircode == "No EIRCODE") {
                 "GPS: ${loc.latitude}, ${loc.longitude}"
@@ -35,6 +40,8 @@ class EditLocationPresenter(private val view: EditLocationView) {
                 .snippet(snippet)
                 .draggable(true)
                 .position(loc)
+
+            //adds the marker to the Map
             map.addMarker(options)
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
             map.setOnMarkerDragListener(view)
@@ -42,6 +49,7 @@ class EditLocationPresenter(private val view: EditLocationView) {
         }
     }
 
+    //Retrieves the address details based on the given LatLng
     private fun getAddressDetails(context: Context, loc: LatLng, callback: (String, String, String) -> Unit) {
         Thread {
             try {
@@ -53,7 +61,6 @@ class EditLocationPresenter(private val view: EditLocationView) {
                     val town = address.locality ?: "Unknown Town"
                     val eircode = address.postalCode ?: "No EIRCODE"
 
-                    // Update the location object with the new details
                     location.road = roadName
                     location.town = town
                     location.eircode = eircode
@@ -75,7 +82,6 @@ class EditLocationPresenter(private val view: EditLocationView) {
             }
         }.start()
     }
-
 
     fun doUpdateLocation(lat: Double, lng: Double, zoom: Float) {
         location.lat = lat

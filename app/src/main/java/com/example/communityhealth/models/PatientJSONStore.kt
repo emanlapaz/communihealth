@@ -10,11 +10,14 @@ import java.lang.reflect.Type
 import java.util.*
 
 const val JSON_FILE = "patients.json"
+
+//GSON Config
 val gsonBuilder: Gson = GsonBuilder().setPrettyPrinting()
     .registerTypeAdapter(Uri::class.java, UriParser())
     .create()
 val listType: Type = object : TypeToken<ArrayList<PatientModel>>() {}.type
 
+// generates a random ID
 fun generateRandomId(): Long {
     return Random().nextLong()
 }
@@ -29,26 +32,30 @@ class PatientJSONStore(private val context: Context) : PatientStore {
         }
     }
 
+    // retrieves all patients
     override fun findAll(): MutableList<PatientModel> {
         logAll()
         return patients
     }
 
+    // retrieves patient by ID
     override fun findById(id:Long) : PatientModel? {
         val foundPlacemark: PatientModel? = patients.find { it.id == id }
         return foundPlacemark
     }
 
+    //creates patient data and save to JSON file (patientJSON)
     override fun create(patient: PatientModel) {
         val sharedPreferences = context.getSharedPreferences("YourPrefName", Context.MODE_PRIVATE)
         val loggedInUserName = sharedPreferences.getString("LoggedInUserNameKey", "defaultUserName") ?: "defaultUserName"
 
         patient.id = generateRandomId()
-        patient.userName = loggedInUserName // Set the username from shared preferences
+        patient.userName = loggedInUserName
         patients.add(patient)
         serialize()
     }
 
+    //update the existing data
     override fun update(patient: PatientModel) {
         val patientsList = findAll() as ArrayList<PatientModel>
         var foundPatient: PatientModel? = patientsList.find { p -> p.id == patient.id }
@@ -68,6 +75,7 @@ class PatientJSONStore(private val context: Context) : PatientStore {
         serialize()
     }
 
+    //retrieves patients based on userName
     fun findByUsername(userName: String): List<PatientModel> {
         return patients.filter { it.userName == userName }
     }

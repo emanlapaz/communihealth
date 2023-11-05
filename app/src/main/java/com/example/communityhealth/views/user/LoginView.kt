@@ -61,8 +61,7 @@ class LoginView: AppCompatActivity() {
             }
 
             if (matchingUser != null) {
-                // Successful login
-                // Save the logged-in username in shared preferences
+                // Successful login -Save the logged-in username in shared preferences
                 val sharedPreferences = getSharedPreferences("YourPrefName", Context.MODE_PRIVATE)
                 sharedPreferences.edit().putString("LoggedInUserNameKey", matchingUser.username).apply()
 

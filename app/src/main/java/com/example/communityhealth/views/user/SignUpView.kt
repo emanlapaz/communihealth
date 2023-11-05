@@ -37,19 +37,17 @@ class SignUpView : AppCompatActivity() {
             val password = passwordEditText.text.toString()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                // Create a UserModel object with the provided username and password
-                val user = UserModel(0, username, password) // Set userId to 0 for now
+                // Create a UserModel object
+                val user = UserModel(0, username, password)
 
                 // Initialize UserJSONStore
                 val userStore = UserJSONStore(this)
 
-                // Save the user data to JSON
                 userStore.create(user)
-
                 // Redirect to the login view
                 goToLoginView()
             } else {
-                // Show a Snackbar if username or password is empty
+                // Show if username or password is empty
                 showEmptyFieldSnackbar()
             }
         }
@@ -68,6 +66,6 @@ class SignUpView : AppCompatActivity() {
     private fun goToLoginView() {
         val intent = Intent(this, LoginView::class.java)
         startActivity(intent)
-        finish() // Close the SignUpActivity
+        finish()
     }
 }
