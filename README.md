@@ -4,6 +4,7 @@
 
 <br/>
 
+*DISCLAIMER: All Patient Information are non factual
 Mobile Android App
 Eugenio Manlapaz
 Youtube Link: https://youtu.be/lSmkCGx2dGE
