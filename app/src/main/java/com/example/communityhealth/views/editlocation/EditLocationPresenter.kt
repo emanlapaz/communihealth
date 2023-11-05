@@ -52,12 +52,19 @@ class EditLocationPresenter(private val view: EditLocationView) {
                     val roadName = address.thoroughfare ?: "Unknown Road"
                     val town = address.locality ?: "Unknown Town"
                     val eircode = address.postalCode ?: "No EIRCODE"
+
+                    // Update the location object with the new details
+                    location.road = roadName
+                    location.town = town
+                    location.eircode = eircode
+
                     (context as Activity).runOnUiThread {
                         callback(roadName, town, eircode)
                     }
                 } else {
-
-                    callback("Unknown Road", "Unknown Town", "No EIRCODE")
+                    (context as Activity).runOnUiThread {
+                        callback("Unknown Road", "Unknown Town", "No EIRCODE")
+                    }
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -68,6 +75,7 @@ class EditLocationPresenter(private val view: EditLocationView) {
             }
         }.start()
     }
+
 
     fun doUpdateLocation(lat: Double, lng: Double, zoom: Float) {
         location.lat = lat

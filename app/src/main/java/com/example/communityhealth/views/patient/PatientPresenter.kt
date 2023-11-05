@@ -65,6 +65,9 @@ class PatientPresenter(private val view: PatientView) {
             location.lat =  patient.lat
             location.lng = patient.lng
             location.zoom = patient.zoom
+            location.road = patient.road
+            location.town = patient.town
+            location.eircode = patient.eircode
         }
         val launcherIntent = Intent(view, EditLocationView::class.java)
             .putExtra("location", location)
@@ -109,6 +112,9 @@ class PatientPresenter(private val view: PatientView) {
                             patient.lat = location.lat
                             patient.lng = location.lng
                             patient.zoom = location.zoom
+                            patient.road = location.road
+                            patient.town =location.town
+                            patient.eircode = location.eircode
                         } // end of if
                     }
                     AppCompatActivity.RESULT_CANCELED -> { } else -> { }

@@ -60,6 +60,9 @@ class PatientJSONStore(private val context: Context) : PatientStore {
             foundPatient.lat = patient.lat
             foundPatient.lng = patient.lng
             foundPatient.zoom = patient.zoom
+            foundPatient.road = patient.road
+            foundPatient.town = patient.town
+            foundPatient.eircode = patient.eircode
             foundPatient.userName = patient.userName
         }
         serialize()
